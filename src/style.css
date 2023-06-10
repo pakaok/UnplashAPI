@@ -5,6 +5,7 @@ body{
     text-align: center;
 }
 #imgDiv{
+    margin: auto;
     display: flex;
     flex-wrap: wrap;
     max-width: 70%;
@@ -25,14 +26,27 @@ body{
     font-size: 1em;
     display: block;
     top: 50%;
-    line-height: 1.1em;
+    line-height: 1.2em;
     left: 50%;
     color: whitesmoke;
     transform: translate(-50%, -50%);
     text-align: center;
     opacity: 0;
 }
-.imgItem{
+.imgClass1{
+    display: none;
+}
+.imgClass2{
+    display: none;
+}
+.imgClass3{
+    display: none;
+}
+
+.imgClass4{
+    display: none;
+}
+#imgDiv > div > div{
     position: relative;
 }
 #imgDiv a{
@@ -40,11 +54,11 @@ body{
 }
 #imgDiv a:hover img{
     filter: brightness(0.5);
-    transition: 300ms;
+    transition: 500ms;
 }
 #imgDiv a:hover #imgDesc{
     opacity: 1;
-    transition: 300ms;
+    transition: 500ms;
 }
 @media screen and (max-width:480px){
     #imgDiv > div {
