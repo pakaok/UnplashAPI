@@ -4,9 +4,52 @@ body{
 #logo{
     text-align: center;
 }
-#imgList{
-display: flex;
+#imgDiv{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 70%;
 }
-#imgList img{
-
+#imgDiv > div {
+    flex: 20%;
+    width: 20%;
+    padding: 0 4px;
+}
+#imgDiv img{
+    width: 100%;
+    vertical-align: middle;
+    margin-bottom: 8px;
+    border-radius: 2%;
+}
+#imgDesc{
+    position: absolute;
+    font-size: 1em;
+    display: block;
+    top: 50%;
+    line-height: 1.1em;
+    left: 50%;
+    color: whitesmoke;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    opacity: 0;
+}
+.imgItem{
+    position: relative;
+}
+#imgDiv a{
+    text-decoration: none;
+}
+#imgDiv a:hover img{
+    filter: brightness(0.5);
+    transition: 300ms;
+}
+#imgDiv a:hover #imgDesc{
+    opacity: 1;
+    transition: 300ms;
+}
+@media screen and (max-width:480px){
+    #imgDiv > div {
+        flex: 50%;
+        width: 50%;
+        padding: 0 2px;
+    }
 }
