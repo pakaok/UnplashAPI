@@ -1,0 +1,12 @@
+body{
+    margin: 0;
+}
+#logo{
+    text-align: center;
+}
+#imgList{
+display: flex;
+}
+#imgList img{
+
+}
