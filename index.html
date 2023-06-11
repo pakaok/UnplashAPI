@@ -13,18 +13,38 @@
   <body>
     <header>
       <h1 id="logo">UnsplashAPI Photo Gallery</h1>
-    </header>
-    <main>
-      <input type="text" id="searchWord" name="searchWord">
-      <select id="searchDropDown" id="searchDropDown">
-        <option value="20">20</option>
+      <section id="searchForm">
+        <input type="text" id="searchWord" name="searchWord">
+        <div class="colorSelect">
+          <button class="dropBtn">Color</button>
+          <div class="drop-Content">
+            <span>Black & White</span>
+            <span>Black</span>
+            <span>White</span>
+            <span>Yellow</span>
+            <span>Orange</span>
+            <span>Red</span>
+            <span>Purple</span>
+            <span>Magenta</span>
+            <span>Green</span>
+            <span>Teal</span>
+            <span>Blue</span>
+
+          </div>
+        </div>
+        <button id="searchButton">Button1</button>
+        <!-- <select id="searchDropDown" id="searchDropDown">
+          <option value="20">20</option>
         <option value="40">40</option>
         <option value="60">60</option>
-      </select>
-      <button id="searchButton">Button1</button>
-      <button ></button>
+        </select> -->
+      </section>
+      
+    </header>
+    <main>
       <div id="imgDiv">
         <div id="imgList1"></div>
+        
         <div id="imgList2"></div>
         <div id="imgList3"></div>
         <div id="imgList4"></div>
