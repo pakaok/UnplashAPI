@@ -4,9 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="page-enter" content="BlendTrans(duration=10000)">
 <meta http-equiv="page-exit" content="BlendTrans(duration=10000)">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1" />
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <script src="src/index.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Geologica&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="src/style.css">
     <title>Unsplash API</title>
   </head>
@@ -18,21 +20,22 @@
         <div class="colorSelect">
           <button class="dropBtn">Color</button>
           <div class="drop-Content">
-            <span>Black & White</span>
-            <span>Black</span>
-            <span>White</span>
-            <span>Yellow</span>
-            <span>Orange</span>
-            <span>Red</span>
-            <span>Purple</span>
-            <span>Magenta</span>
-            <span>Green</span>
-            <span>Teal</span>
-            <span>Blue</span>
+            <span style="background-color: rgb(255, 255, 255);">None</span>
+            <span style="background-color: rgb(126, 126, 126);">B & W</span>
+            <span style="background-color: black; color: white;">Black</span>
+            <span style="background-color: white;">White</span>
+            <span style="background-color: yellow;">Yellow</span>
+            <span style="background-color: orange;">Orange</span>
+            <span style="background-color: red;">Red</span>
+            <span style="background-color: purple;">Purple</span>
+            <span style="background-color: magenta;">Magenta</span>
+            <span style="background-color: green;">Green</span>
+            <span style="background-color: teal;">Teal</span>
+            <span style="background-color: blue;">Blue</span>
 
           </div>
         </div>
-        <button id="searchButton">Button1</button>
+        <button id="searchButton">Search</button>
         <!-- <select id="searchDropDown" id="searchDropDown">
           <option value="20">20</option>
         <option value="40">40</option>
@@ -44,14 +47,12 @@
     <main>
       <div id="imgDiv">
         <div id="imgList1"></div>
-        
         <div id="imgList2"></div>
         <div id="imgList3"></div>
         <div id="imgList4"></div>
       <!-- <img src="https://images.unsplash.com/photo-1685942962211-bdae665b7a91?ixid=M3w0NTkzNzN8MHwxfGFsbHwyfHx8fHx8Mnx8MTY4NjM1NTM4OXw&ixlib=rb-4.0.3"> -->
-    </div>
-    <button></button>
-    <h1 id="copyRight">&copy;J.Kim</h1>
+      </div>
     </main>
+    <footer><h1 id="copyRight">&copy;J.Kim</h1></footer>
   </body>
 </html>
