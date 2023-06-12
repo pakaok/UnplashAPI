@@ -1,12 +1,12 @@
 const AccessKey = '7dkXoggyhxLeP-MXiXnFTu-UjWBhxP-JxlycKBQzg6g'
-function setUpperCase(string="No description") 
-{
-    if (string!=null){
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }else{
-        return "No description"
-    }
+
+var searchState=false
+const option= {
+    root:null,
+    rootMargin: '0px',
+    threshhold:0
 }
+var color = ''
 const perPageNum = 7
 var pNum = 1
 var throttle = true // to avoid multiple fetch()
@@ -23,8 +23,9 @@ const callback = (entries,observer)=>{
         }
     })
 }
+const observer = new IntersectionObserver(callback,option)
 
-var color = ''
+
 $('.drop-Content span').click(function () {//color selection in html
     if ($(this).text()!='None'){
         color= $(this).text()
@@ -32,24 +33,13 @@ $('.drop-Content span').click(function () {//color selection in html
         $('.dropBtn').css('background-color', $(this).css('background-color'));
         $('.dropBtn').css('color', $(this).css('color'));
         $('.drop-Content').css('display','')
-        //.colorSelect:hover .drop-Content{display: block;}
-        //$('.colorSelect:hover .drop-Content').css('display','block')
     }else{
         color = ''
         $('.dropBtn').text('None');
         $('.dropBtn').css('background-color', $(this).css('background-color'));
         $('.dropBtn').css('color', $(this).css('color'));
-        //$('.drop-Content').css('display','none')
-        //$('.colorSelect:hover .drop-Content').css('display','block')
-
     }
 });
-const option= {
-    root:null,
-    rootMargin: '0px',
-    threshhold:0
-}
-const observer = new IntersectionObserver(callback,option)
 
 $(document).ready(function(){
     random_fetchAPI(pNum,28)
@@ -66,7 +56,6 @@ $(document).ready(function(){
 function random_fetchAPI(pageNum=1,perPage){
     fetch('https://api.unsplash.com/photos?page='+pageNum+'&per_page='+perPage+'&client_id='+ AccessKey)
     .then((res)=>{
-        console.log(res)
         if(res.status==200&&res.ok){
             return res.json()
         }else if(res.status==401){
@@ -84,19 +73,9 @@ function random_fetchAPI(pageNum=1,perPage){
         }
     })
     .then((res)=>{
-        console.log('https://api.unsplash.com/photos?page='+pageNum+'&per_page='+perPage+'&'+ AccessKey)
-        console.log(res)
-        // if(typeof res!='undefined'&&res.errors.length > 0){
-        //     return;
-        // }
         after_Fetch(res)
-        console.log(pNum)
     })
-    // .catch(err=>{
-    //     console.log('err: '+ err.message)
-    // })
 }
-var searchState=false
 function search_fetchAPI(pageNum=1,perPage,color='',keyword=''){
     var query='&query='
     var qColor = '&color='
@@ -130,10 +109,6 @@ function search_fetchAPI(pageNum=1,perPage,color='',keyword=''){
             }
         })
         .then((res)=>{
-            console.log(res)
-            console.log('https://api.unsplash.com/search/photos?&page='+pageNum+'&per_page='+perPage+
-            query+qColor+
-            '&'+ AccessKey)
             if(res!=undefined&&res.total==0){//when no result
                 if(!$('#noresult').length){
                     $('main').append('<h1 id="noresult" style="margin:0 auto 10% auto;width:30%;color:gray;text-align:center;font-size:5em">No Result</h1>')
@@ -142,16 +117,13 @@ function search_fetchAPI(pageNum=1,perPage,color='',keyword=''){
             }
             if(res!=undefined&&res.results.length==0){//if no more results, stop automatic fetch()
                 observer.disconnect()
-                console.log(res.results)
                 return;
             }
             if(res!=undefined&&res.results!=undefined){
                 after_Fetch(res.results)
-
             }
-            console.log(pNum)
+            // console.log(pNum)
             searchState=true//intersectionObserver will load remaining search results if this value is true.
-            
         })
     }else{
         random_fetchAPI(pNum,28)
@@ -207,5 +179,13 @@ function observeImg(){//if any end of photo columns is visible, then intersec ca
     }
     if(document.getElementById("imgList4").lastElementChild){
         observer.observe(document.getElementById("imgList4").lastElementChild)
+    }
+}
+function setUpperCase(string="No description") 
+{
+    if (string!=null){
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }else{
+        return "No description"
     }
 }

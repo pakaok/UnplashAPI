@@ -148,6 +148,11 @@ footer h1 {
     border-radius: 20px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
+#logo2{
+    margin: 0 auto 3% auto;
+    width: 70%;
+    text-align: center;
+}
 @media screen and (max-width:480px){
     #imgDiv > div {
         flex: 50%;
@@ -179,6 +184,7 @@ footer h1 {
     }
     #noresult{
         font-size: 1em;
+        margin: 0 auto 10% 5%;
     }
     #goTop{
         display:none;
