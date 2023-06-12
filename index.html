@@ -15,8 +15,10 @@
   <body>
     <header>
       <h1 id="logo">UnsplashAPI Photo Gallery</h1>
+    </header>
+    <main>
       <section id="searchForm">
-        <input type="text" id="searchWord" name="searchWord">
+        <input type="text" id="searchWord" name="searchWord" placeholder="Color filter only works with Keyword Search">
         <div class="colorSelect">
           <button class="dropBtn">Color</button>
           <div class="drop-Content">
@@ -32,26 +34,17 @@
             <span style="background-color: green;">Green</span>
             <span style="background-color: teal;">Teal</span>
             <span style="background-color: blue;">Blue</span>
-
           </div>
         </div>
         <button id="searchButton">Search</button>
-        <!-- <select id="searchDropDown" id="searchDropDown">
-          <option value="20">20</option>
-        <option value="40">40</option>
-        <option value="60">60</option>
-        </select> -->
       </section>
-      
-    </header>
-    <main>
       <div id="imgDiv">
         <div id="imgList1"></div>
         <div id="imgList2"></div>
         <div id="imgList3"></div>
         <div id="imgList4"></div>
-      <!-- <img src="https://images.unsplash.com/photo-1685942962211-bdae665b7a91?ixid=M3w0NTkzNzN8MHwxfGFsbHwyfHx8fHx8Mnx8MTY4NjM1NTM4OXw&ixlib=rb-4.0.3"> -->
       </div>
+      <a id="goTop" href="#">↑</a>
     </main>
     <footer><h1 id="copyRight">&copy;J.Kim</h1></footer>
   </body>

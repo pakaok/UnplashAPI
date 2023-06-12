@@ -1,4 +1,4 @@
-const AccessKey = 'client_id=7dkXoggyhxLeP-MXiXnFTu-UjWBhxP-JxlycKBQzg6g'
+const AccessKey = '7dkXoggyhxLeP-MXiXnFTu-UjWBhxP-JxlycKBQzg6g'
 function setUpperCase(string="No description") 
 {
     if (string!=null){
@@ -9,25 +9,23 @@ function setUpperCase(string="No description")
 }
 const perPageNum = 7
 var pNum = 1
-var throttle = true
+var throttle = true // to avoid multiple fetch()
 const callback = (entries,observer)=>{
     entries.forEach(entry => {
         if (entry.isIntersecting&&throttle){
             throttle=false
             observer.disconnect()
-            if(!searchState){
+            if(!searchState){//if not search mode
                 random_fetchAPI(pNum,28)
-            }else{
+            }else{//if search mode
                 search_fetchAPI(pNum,28,$('.dropBtn').text().toLowerCase(),$('#searchWord').val())
             }
         }
     })
 }
-// var color = $('.drop-Content').on('click',()=>{
 
-// })
 var color = ''
-$('.drop-Content span').click(function () {
+$('.drop-Content span').click(function () {//color selection in html
     if ($(this).text()!='None'){
         color= $(this).text()
         $('.dropBtn').text(color);
@@ -61,12 +59,21 @@ $(document).ready(function(){
   });
 
 function random_fetchAPI(pageNum=1,perPage){
-    fetch('https://api.unsplash.com/photos?page='+pageNum+'&per_page='+perPage+'&'+ AccessKey)
-    .then((res)=>res.json())
+    fetch('https://api.unsplash.com/photos?pge='+pageNum+'&per_page='+perPage+'&client_id='+ AccessKey)
     .then((res)=>{
+        console.log(res)
+        if(res.ok){
+            return res.json()
+        }
+    })
+    .then((res)=>{
+        console.log('https://api.unsplash.com/photos?page='+pageNum+'&per_page='+perPage+'&'+ AccessKey)
         console.log(res)
         after_Fetch(res)
         console.log(pNum)
+    })
+    .catch(err=>{
+        console.log('err: '+ err)
     })
 }
 var searchState=false
@@ -79,20 +86,25 @@ function search_fetchAPI(pageNum=1,perPage,color='',keyword=''){
     if (query){
         fetch('https://api.unsplash.com/search/photos?page='+pageNum+'&per_page='+perPage+
         query+qColor+
-        '&'+ AccessKey)
+        '&client_id='+ AccessKey)
         .then((res)=>res.json())
         .then((res)=>{
             console.log(res)
             console.log('https://api.unsplash.com/search/photos?&page='+pageNum+'&per_page='+perPage+
             query+qColor+
             '&'+ AccessKey)
-            if(res.total==0){
+            if(res.total==0){//when no result 
                 $('main').append('<h1 style="margin:0 auto 10% auto;width:30%;color:gray;text-align:center;font-size:5em">No Result</h1>')
+                return;
+            }
+            if(res.results.length==0){//if no more results, stop automatic fetch()
+                observer.disconnect()
+                console.log(res.results)
                 return;
             }
             after_Fetch(res.results)
             console.log(pNum)
-            searchState=true
+            searchState=true//intersectionObserver will load remaining search results if this value is true.
             
         })
         // .catch(err => {console.log(err)})
@@ -138,7 +150,7 @@ function after_Fetch(res){
     pNum++
 }
 
-function observeImg(){
+function observeImg(){//if any end of photo columns is visible, then intersec callback() runs  
     observer.observe(document.getElementById("imgList1").lastElementChild)
     observer.observe(document.getElementById("imgList2").lastElementChild)
     observer.observe(document.getElementById("imgList3").lastElementChild)

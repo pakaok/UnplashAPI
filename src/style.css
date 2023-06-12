@@ -14,8 +14,24 @@ footer h1 {
     margin: auto;
     text-align: center;
 }
+#goTop{
+    text-decoration: none;
+    font-size: 2em;
+    position: fixed;
+    bottom: 3%;
+    right: 2.5%;
+    transform: translate(50%,0);
+    color:darkslategrey;
+    border: 1px darkslategrey solid;
+    border-radius: 100px;
+}
+#goTop:visited{
+    color:darkslategrey;
+}
 #logo{
     text-align: center;
+    font-size: 4em;
+    margin: 5%;
 }
 #imgDiv{
     margin: auto;
@@ -66,7 +82,8 @@ footer h1 {
     display: flex;
     max-width: 800px;
     margin:auto auto 10% auto;
-    position: relative;
+    position: sticky;
+    top:1%;
     padding: 0 10px;
 }
 #searchWord{
