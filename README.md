@@ -1,5 +1,7 @@
 # UnplashAPI
 This project is to practice Unplash API 
+# How to Use
+Run index.html using Live Server extention of VSCode.
 
 ## Features
 1. Infinite scroll (auto loading)
